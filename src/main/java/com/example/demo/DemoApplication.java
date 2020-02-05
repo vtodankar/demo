@@ -4,11 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @SpringBootApplication
 @RestController
 public class DemoApplication {
-
+Logger logger = LoggerFactory.getLogger(DemoApplication.class);
 	@GetMapping("/")
 	public String home() {
 		return "Hello World!";
@@ -23,7 +26,8 @@ public class DemoApplication {
 		}
 		catch(Exception ex)
 		{
-		 ex.printStackTrace(); //this will get "Some required files are missing"
+			logger.error("An exception occurred!", ex);
+		 //ex.printStackTrace(); //this will get "Some required files are missing"
 		}
 		return "hello error";
 
